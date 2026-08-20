@@ -12,18 +12,52 @@
     <div class="container">
         <h1>Faça parte do Meninas na Ciência!</h1> 
         <p>Preencha o formulário abaixo para se inscrever em nosso grupo de extensão e fazer parte dessa comunidade incrível de meninas e mulheres apaixonadas por ciência!</p>
-        <form>
-            <label for="nome"><b>Nome:</b></label>
-            <input type="text" id="nome" name="nome" required> <br> <br>
+        <form id="formCadastro">
+    <label for="nome"><b>Nome:</b></label>
+    <input type="text" id="nome" name="nome" required> <br> <br>
 
-        <label for="email"><b>Email:</b></label>
-        <input type="email" id="email" name="email" required> <br> <br>
+    <label for="email"><b>Email:</b></label>
+    <input type="email" id="email" name="email" required> <br> <br>
 
-        <label for="telef"><b>Telefone:</b></label>
-        <input type="tel" id="telef" name="telef" required> <br> <br>
+    <label for="telef"><b>Telefone:</b></label>
+    <input type="tel" id="telef" name="telef" required> <br> <br>
 
-            <button type="submit">Cadastrar</button>
-        </form>
+    <button type="submit">Cadastrar</button>
+</form>
+
+<p id="mensagem"></p>
     </div>
+    <script>
+  document.getElementById('formCadastro').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const whatsapp = document.getElementById('telef').value;
+    const mensagem = document.getElementById('mensagem');
+
+    try {
+      const resposta = await fetch('https://site-do-projeto-meninas-na-ciencia.vercel.app/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, whatsapp }),
+      });
+
+      const dados = await resposta.json();
+
+      if (resposta.ok) {
+        mensagem.textContent = 'Cadastro realizado com sucesso!';
+        mensagem.style.color = 'green';
+        document.getElementById('formCadastro').reset();
+      } else {
+        mensagem.textContent = 'Erro: ' + dados.erro;
+        mensagem.style.color = 'red';
+      }
+    } catch (err) {
+      mensagem.textContent = 'Erro ao conectar com o servidor. Verifique se a API está rodando.';
+      mensagem.style.color = 'red';
+    }
+  });
+</script>
 </body>
 </html>

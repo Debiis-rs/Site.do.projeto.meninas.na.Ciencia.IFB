@@ -237,13 +237,7 @@ p {
   background-size: cover;
 }
 
-#projetos .atomo-svg {
-  position: absolute;
-  top: 400%;
-  left: 22%;
-  transform: rotate(23deg);   /* rotaciona o icon em 23 graus */
-  z-index: 0;
-}
+
 
 #projetos h1 {
   margin-bottom: 30px;
@@ -276,13 +270,7 @@ button {
   justify-content: center;
 }
 
-#participar .atomo-svg {
-  position: absolute;
-  top: 489%;
-  left: 20%;
-  transform: rotate(23deg);   /* rotaciona o icon em 23 graus */
-  z-index: 0;
-}
+
 
 #participar h1 {
   margin-bottom: 30px;
@@ -296,14 +284,21 @@ button {
   margin-top: 10px;
 }
 
-#girl-coding-icon {
-  width: 150px;
-  height: 150px;
-  position: absolute;
-  top: 527%;
-  right: 24%;
-  object-fit: cover;
-  margin-top: 30px;
+.secao-com-icone {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.texto-encontros {
+    flex: 1;
+}
+
+#icons8-calendário-100 {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 /* .participantes {
