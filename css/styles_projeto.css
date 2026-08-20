@@ -14,7 +14,7 @@ img, svg {
 
 /****** HEADER & NAV ******/
 header {
-  background-color: var(--bg-nav-orchid);
+  background-color:mediumpurple;
   height: 85px;
   position: fixed;
   top: 0;
@@ -72,8 +72,8 @@ h1 {
 .atomo-svg {
   color: var(--icon-atomo);
   z-index: 0;
-  opacity: 0.35;       
-  pointer-events: none; 
+  opacity: 0.35;        /* NOVO: deixa o ícone como um "watermark", nunca competindo com o texto */
+  pointer-events: none;  /* NOVO: garante que nunca bloqueie cliques em botões/links */
 }
 
 #inicio .atomo-svg {
@@ -93,7 +93,7 @@ h1 {
 section {
   min-height: 90vh;
   padding: 70px 180px;
-  position: relative;  
+  position: relative;   /* NOVO: aplicado a todas as sections como padrão seguro */
 }
 
 #img-mnc,
@@ -338,20 +338,9 @@ button {
 #encontros {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza na vertical */
-  align-items: center;     /* Centraliza na horizontal */
-  text-align: center;      /* Centraliza o texto */
-  min-height: 100vh;       /* Define a altura mínima do contêiner */
+  justify-content: center;
 }
 
-#encontros h1 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-}
-
-#encontros p {
-  font-size: clamp(1.125rem, 1.2vw + 0.5rem, 1.375rem);
-  line-height: 1.6;
-}
 
 /****** SECTION FAQ ******/
 #faq {
@@ -379,6 +368,89 @@ button {
 .faq-conteudo {
   flex: 2 1 400px;
   max-width: 700px;
+}
+
+
+/****** PÁGINA: LISTA DE PROJETOS (pages/projetos.html) ******/
+#lista-projetos {
+  min-height: auto;
+  padding: 140px 180px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#lista-projetos h1 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#lista-projetos > p {
+  text-align: center;
+  text-indent: 0;
+  max-width: 700px;
+  margin-bottom: 50px;
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.projeto-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-card-plum);
+  border-radius: 30px;
+  padding: 35px 32px;
+}
+
+.projeto-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.projeto-header h2 {
+  font: var(--font-weight-bold) var(--font-size-2xl) var(--font-family-heading);
+  color: var(--heading-inverse);
+}
+
+.projeto-status {
+  font: var(--font-weight-bold) var(--font-size-sm) var(--font-family-base);
+  padding: 6px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.status-concluido {
+  background-color: #2e7d32;
+  color: #ffffff;
+}
+
+.status-andamento {
+  background-color: #e39c1a;
+  color: #ffffff;
+}
+
+
+.projeto-card p:not(.projeto-natureza) {
+  font-size: var(--font-size-sm);
+  color: var(--text-main);
+  text-align: justify;
+  text-indent: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.voltar-home {
+  margin-top: 60px;
 }
 
 
@@ -432,6 +504,19 @@ button {
   section {
     padding: 60px 20px;
     min-height: auto;
+  }
+
+  #lista-projetos {
+    padding: 140px 20px 60px;
+  }
+
+  .projetos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projeto-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   h1 {
